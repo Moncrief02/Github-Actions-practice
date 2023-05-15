@@ -34,9 +34,9 @@ jobs:
             path: ~/.npm
             key: deps-nod-modules-${{ hashFiles( ' **/package-lock.json')}}
         - name: Install Dependencies
-            run: npm ci
+          run: npm ci
         - name: Build Website
-            run: run npm build
+          run: run npm build
         - name: Publish JS filename
           id: publish
           run: find dist/assets/*.js -type f -exec dir echo '::set-output name=script-file::{}'>> $GITHUB_OUTPUT ';'

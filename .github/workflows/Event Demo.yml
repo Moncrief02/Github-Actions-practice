@@ -2,7 +2,7 @@ name: Event demo 1
 on:
   pull_request:
     types:
-      -opened
+      - opened
     branches:
       - main
       - 'dev-*' # dev-new dev-this-is-new

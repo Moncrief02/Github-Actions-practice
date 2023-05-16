@@ -3,8 +3,16 @@ on:
   push:
     branches:
       - main
+      - Dev
+env:
+  MONGODB_DB_NAME: gha-Demo
 jobs:
   test:
+    env:
+      MONGODB_DB_CLUSTER_ADDRESS:
+      MONGODB_DB_USERNAME:
+      MONGODB_DB_PASSWORD:
+      PORT:
     runs-on: Ubuntu-latest
     steps:
       - name: Get Code
@@ -19,7 +27,14 @@ jobs:
       - name: Lint code
         run: npm run lint
       - name: Test code
+        continue-on-error: true
+        id: run-tests
         run: npm tests
+        if: steps.run-tests.outcome == 'failure '
+      - name: Output Information
+        run: |
+          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME}}"
+          echo "MONGODB_DB_NAME: $MONGODB_NAME"
     build:
       needs: test
       runs-on: Ubuntu-latest

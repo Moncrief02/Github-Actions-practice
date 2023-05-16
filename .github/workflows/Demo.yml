@@ -7,18 +7,18 @@ on:
   pull_request:
     branches:["main"]
 Workflow_dispatch:
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: run a one line script
-          run: echo Hello this the first github actions
-        - name: Run multiple Scripts
-          run: |
-           echo Add other actions to build,
-           echo test, and deploy your project,
-           echo Done first github actions.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run a one line script
+        run: echo Hello this the first github actions
+      - name: Run multiple Scripts
+        run: |
+         echo Add other actions to build,
+         echo test, and deploy your project,
+         echo Done first github actions.
 
           
           
